@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: msc-consumer-depart
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.254.128:8848
+        # 集群
+        # server-addr: 192.168.254.128:8848,192.168.254.130:8848,192.168.254.132:8848
