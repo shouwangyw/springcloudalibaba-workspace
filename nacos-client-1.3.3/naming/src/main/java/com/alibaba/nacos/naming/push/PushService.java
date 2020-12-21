@@ -121,7 +121,6 @@ public class PushService implements ApplicationContextAware, ApplicationListener
         Service service = event.getService();
         String serviceName = service.getName();
         String namespaceId = service.getNamespaceId();
-
         Future future = GlobalExecutor.scheduleUdpSender(() -> {
             try {
                 Loggers.PUSH.info(serviceName + " is changed, add it to push queue.");
@@ -130,7 +129,6 @@ public class PushService implements ApplicationContextAware, ApplicationListener
                 if (MapUtils.isEmpty(clients)) {
                     return;
                 }
-
                 Map<String, Object> cache = new HashMap<>(16);
                 long lastRefTime = System.nanoTime();
                 for (PushClient client : clients.values()) {
@@ -153,7 +151,6 @@ public class PushService implements ApplicationContextAware, ApplicationListener
 
                         Loggers.PUSH.debug("[PUSH-CACHE] cache hit: {}:{}", serviceName, client.getAddrStr());
                     }
-
                     if (compressData != null) {
                         ackEntry = prepareAckEntry(client, compressData, data, lastRefTime);
                     } else {
@@ -162,16 +159,14 @@ public class PushService implements ApplicationContextAware, ApplicationListener
                             cache.put(key, new org.javatuples.Pair<>(ackEntry.origin.getData(), ackEntry.data));
                         }
                     }
-
                     Loggers.PUSH.info("serviceName: {} changed, schedule push for: {}, agent: {}, key: {}",
                             client.getServiceName(), client.getAddrStr(), client.getAgent(),
                             (ackEntry == null ? null : ackEntry.key));
-
+                    // 通过udp推送
                     udpPush(ackEntry);
                 }  // end-for
             } catch (Exception e) {
                 Loggers.PUSH.error("[NACOS-PUSH] failed to push serviceName: {} to client, error: {}", serviceName, e);
-
             } finally {
                 futureMap.remove(UtilsAndCommons.assembleFullServiceName(namespaceId, serviceName));
             }

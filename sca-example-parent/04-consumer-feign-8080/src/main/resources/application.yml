@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: msc-consumer-depart
+  cloud:
+    nacos:
+      discovery:
+#        server-addr: 192.168.254.128:8848
+        server-addr: localhost:8848
+        # 集群
+        # server-addr: 192.168.254.128:8848,192.168.254.130:8848,192.168.254.132:8848
+    loadbalancer:
+      ribbon:
+        enabled: false
+feign:
+  client:
+    config:
+      # 设置全局超时阈值
+      default:
+        connectTimeout: 5000
+        # 读超时，从Feign客户端请求发出到接收到提供者响应，这段时间的超时阈值
+        readTimeout: 2000
+      # 设置指定Feign客户端的超时阈值，其优先级要高于全局的
+      msc-provider-depart:
+        readTimeout: 5000
+
+# <clientName>.<clientConfigNameSpace>.NFLoadBalancerRuleClassName=com.netflix.loadbalancer.WeightedResponseTimeRule
+msc-provider-depart:
+  ribbon:   # 指定负载均衡策略为随机策略
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

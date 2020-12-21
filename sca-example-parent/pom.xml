@@ -29,6 +29,8 @@
     <module>02-provider-nacos-8081</module>
     <module>02-consumer-nacos-8080</module>
     <module>03-provider-nacos-config-8081</module>
+    <module>04-consumer-feign-8080</module>
+    <module>04-provider-nacos-8081</module>
   </modules>
 
   <dependencyManagement>
@@ -39,6 +41,7 @@
         <artifactId>spring-cloud-dependencies</artifactId>
         <version>${spring-cloud.version}</version>
         <type>pom</type>
+        <scope>import</scope>
       </dependency>
       <!-- spring-cloud-alibaba -->
       <dependency>
@@ -46,21 +49,8 @@
         <artifactId>spring-cloud-alibaba-dependencies</artifactId>
         <version>${spring-cloud-alibaba.version}</version>
         <type>pom</type>
+        <scope>import</scope>
       </dependency>
-
-      <!--nacos config依赖-->
-      <dependency>
-        <groupId>com.alibaba.cloud</groupId>
-        <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        <version>${spring-cloud-alibaba.version}</version>
-      </dependency>
-      <!-- nacos discovery依赖 -->
-      <dependency>
-        <groupId>com.alibaba.cloud</groupId>
-        <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        <version>${spring-cloud-alibaba.version}</version>
-      </dependency>
-
       <!-- druid连接池 -->
       <dependency>
         <groupId>com.alibaba</groupId>
@@ -77,7 +67,17 @@
   </dependencyManagement>
 
   <dependencies>
-    <!--nacos config依赖-->
+    <!-- spring cloud loadbalancer依赖 -->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+    </dependency>
+    <!-- openfeign 依赖 -->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-openfeign</artifactId>
+    </dependency>
+    <!-- nacos config依赖 -->
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>

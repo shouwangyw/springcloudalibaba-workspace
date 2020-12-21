@@ -357,10 +357,8 @@ public class InstanceController {
         String serviceName = WebUtils.required(request, CommonParams.SERVICE_NAME);
         checkServiceNameFormat(serviceName);
         Loggers.SRV_LOG.debug("[CLIENT-BEAT] full arguments: beat: {}, serviceName: {}", clientBeat, serviceName);
-
         // 从注册表中查找当前心跳client的instance
         Instance instance = serviceManager.getInstance(namespaceId, serviceName, clusterName, ip, port);
-
         // 若注册表中没有这个instance，则在这里注册
         if (instance == null) {
             if (clientBeat == null) {

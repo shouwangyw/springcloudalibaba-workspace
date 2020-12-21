@@ -74,7 +74,6 @@ public class ClientBeatProcessor implements Runnable {
         int port = rsInfo.getPort();
         Cluster cluster = service.getClusterMap().get(clusterName);
         List<Instance> instances = cluster.allIPs(true);
-
         // 遍历service的所有instance，查找当前心跳instance
         for (Instance instance : instances) {
             if (instance.getIp().equals(ip) && instance.getPort() == port) {
