@@ -31,6 +31,13 @@
     <module>03-provider-nacos-config-8081</module>
     <module>04-consumer-feign-8080</module>
     <module>04-provider-nacos-8081</module>
+    <module>05-gateway-config-9000</module>
+    <module>05-gateway-api-9001</module>
+    <module>05-gateway-ribbon-config-9000</module>
+    <module>05-gateway-ribbon-api-9001</module>
+    <module>05-showinfo-8080</module>
+    <module>05-gateway-filter-config-9000</module>
+    <module>05-gateway-filter-api-9001</module>
   </modules>
 
   <dependencyManagement>

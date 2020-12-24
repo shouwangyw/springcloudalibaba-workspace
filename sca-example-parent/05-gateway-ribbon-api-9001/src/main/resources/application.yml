@@ -1,0 +1,10 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: msc-gateway-depart
+  cloud:
+    nacos:
+      discovery:
+#        server-addr: 192.168.254.128:8848
+        server-addr: localhost:8848
