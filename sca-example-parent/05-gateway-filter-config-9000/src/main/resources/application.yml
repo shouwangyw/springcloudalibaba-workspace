@@ -4,12 +4,31 @@ spring:
   cloud:
     gateway:
       routes:
-      - id: weight_baidu_route
-        uri: https://www.baidu.com
+#      - id: addRequestHeader_filter
+#      - id: addRequestParameter_filter
+#      - id: addResponseHeader_filter
+#      - id: prefixPath_filter
+#      - id: stripPrefix_filter
+#      - id: rewritePath_filter
+#      - id: circuitBreaker_filter
+      - id: requestRateLimiter_filter
+        uri: http://localhost:8080
         predicates:
-        - Weight=search, 8
-
-      - id: weight_360_route
-        uri: https://www.so.com
-        predicates:
-        - Weight=search, 2
+        - Path=/**
+        filters:
+#        - AddRequestHeader=X-Request-Color, blue
+#        - AddRequestParameter=color, blue
+#        - AddResponseHeader=X-Response-Color, blue
+#        - PrefixPath=/info
+#        - StripPrefix=2
+#        - RewritePath=/red(?<segment>/?.*), $\{segment}
+#        - name: CircuitBreaker
+#          args:
+#            name: myCircuitBreaker
+#            fallbackUri: forward:/fallback
+        - name: RequestRateLimiter
+          args:
+            key-resolver: "#{@keyResolver}"
+            redis-rate-limiter.replenishRate: 2
+            redis-rate-limiter.burstCapacity: 5
+            redis-rate-limiter.requestedTokens: 1

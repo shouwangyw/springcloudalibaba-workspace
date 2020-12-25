@@ -10,7 +10,7 @@
   </parent>
 
   <groupId>com.yw.sca.example</groupId>
-  <artifactId>05-gateway-filter-config-9000</artifactId>
+  <artifactId>05-custom-multifilters-9000</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
 
@@ -37,16 +37,6 @@
   </dependencyManagement>
 
   <dependencies>
-    <!-- redis-reactive依赖 -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
-    </dependency>
-    <!-- resilience4j依赖 -->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
-    </dependency>
     <!-- 注意：依赖中一定不要包含spring-cloud-starter-web依赖 -->
     <!-- gateway依赖 -->
     <dependency>

@@ -2,9 +2,9 @@ package com.yw.sca;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
-import reactor.core.publisher.Mono;
 
 /**
  * @author yangwei
@@ -17,8 +17,10 @@ public class Gateway059000 {
     }
 
     @Bean
-    public KeyResolver keyResolver() {
-        return exchange -> Mono.just(exchange.getRequest()
-                .getRemoteAddress().getHostName());
+    public RouteLocator routeLocator(RouteLocatorBuilder builder) {
+        return builder.routes()
+                .route("custom_filter_route", ps -> ps.path("/**")
+                        .uri("http://localhost:8080")
+                ).build();
     }
 }
