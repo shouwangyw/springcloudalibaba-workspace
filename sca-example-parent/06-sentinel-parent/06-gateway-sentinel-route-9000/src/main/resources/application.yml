@@ -1,0 +1,22 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: msc-gateway-sentinel
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.0.100:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: depart_route
+          - Path=/consumer/depart/get/**
+          uri: lb://msc-consumer-depart
+
+      - id: staff_route
+        predicates:
+          - Path=/consumer/staff/get/**
+        uri: lb://msc-consumer-staff

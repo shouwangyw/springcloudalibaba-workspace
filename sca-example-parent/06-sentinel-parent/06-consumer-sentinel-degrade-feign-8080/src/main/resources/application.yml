@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: msc-consumer-depart
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+# 开启Feign对Sentinel的支持
+feign:
+  sentinel:
+    enabled: true

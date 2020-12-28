@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: msc-consumer-depart
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.0.100:8848
+    sentinel:
+      transport:
+        dashboard: 192.168.254.130:8888
+        port: 8719
+      eager: true

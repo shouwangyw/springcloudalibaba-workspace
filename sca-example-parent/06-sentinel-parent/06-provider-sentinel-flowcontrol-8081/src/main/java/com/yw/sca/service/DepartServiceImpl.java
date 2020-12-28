@@ -1,13 +1,13 @@
 package com.yw.sca.service;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.yw.sca.entity.Depart;
 import com.yw.sca.repository.DepartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author yangwei
@@ -37,32 +37,23 @@ public class DepartServiceImpl implements DepartService {
         return departRepository.save(depart) != null;
     }
 
-    @Value("${server.port}")
-    private int port;
-
-//    @Override
-//    public Depart findById(int id) {
-//        if (departRepository.existsById(id)) {
-//            Depart depart = departRepository.getOne(id);
-//            depart.setName(depart.getName() + " : " + port);
-//            return depart;
-//        }
-//        return new Depart().setName("no this depart " + port);
-//    }
-
     @Override
     public Depart findById(int id) {
-        try {
-            TimeUnit.MILLISECONDS.sleep(500);
-        } catch (InterruptedException ignored) {}
         if (departRepository.existsById(id)) {
             return departRepository.getOne(id);
         }
         return new Depart().setName("no this depart");
     }
 
+    @SentinelResource(value = "qpsFlowRule", fallback = "listHandlerFallback")
     @Override
     public List<Depart> list() {
         return departRepository.findAll();
+    }
+    /**
+     * 服务降级方法
+     */
+    public List<Depart> listHandlerFallback() {
+        return Collections.singletonList(new Depart().setName("no any depart"));
     }
 }
