@@ -1,7 +1,5 @@
 package com.yw.sca.controller;
 
-import com.alibaba.csp.sentinel.Entry;
-import com.alibaba.csp.sentinel.SphU;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.yw.sca.entity.Depart;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
-import java.util.Collections;
 import java.util.List;
 
 /**

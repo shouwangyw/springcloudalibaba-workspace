@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: msc-consumer-depart
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.0.100:8848
+#        group: SENTINEL_GROUP
+    sentinel:
+      transport:
+        dashboard: 192.168.254.130:8888
+        port: 8719
+      eager: true
+      # 指定nacos数据源
+      datasource:
+        # 指定数据源名称，可以随意
+        my-flow-rule:
+          nacos:
+            server-addr: 192.168.0.100:8848
+            # 指定配置文件名称，可以随意
+            dataId: ${spring.application.name}-flow-rules
+#            groupId: SENTINEL_GROUP
+            # 指定配置文件中的规则类型
+            rule-type: flow
+            # 指定配置文件中的数据格式
+            data-type: json

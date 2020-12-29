@@ -24,6 +24,8 @@
     <module>06-consumer-depart-sentinel-gateway-8180</module>
     <module>06-consumer-staff-sentinel-gateway-8280</module>
     <module>06-gateway-sentinel-route-9000</module>
+    <module>06-gateway-sentinel-api-9000</module>
+    <module>06-consumer-sentinel-persist-8080</module>
   </modules>
 
   <build>

@@ -3,13 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.yw.sca.example</groupId>
-    <artifactId>06-sentinel-parent</artifactId>
-    <version>1.0</version>
-    <relativePath>../pom.xml</relativePath>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.3.2.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
+  <groupId>com.yw.sca.example</groupId>
   <artifactId>06-gateway-sentinel-route-9000</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
 
   <properties>
     <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
@@ -23,6 +26,14 @@
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
         <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- spring-cloud-alibaba -->
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+        <version>${spring-cloud-alibaba.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -40,11 +51,22 @@
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
     </dependency>
+    <!--nacos discovery依赖-->
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+    </dependency>
     <!-- 注意：依赖中一定不要包含spring-cloud-starter-web依赖 -->
     <!-- gateway依赖 -->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-gateway</artifactId>
+    </dependency>
+
+    <!--resilience4j依赖-->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
     </dependency>
   </dependencies>
 

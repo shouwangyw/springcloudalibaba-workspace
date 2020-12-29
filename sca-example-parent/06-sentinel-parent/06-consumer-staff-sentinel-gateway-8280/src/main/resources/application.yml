@@ -2,7 +2,7 @@ server:
   port: 8280
 spring:
   application:
-    name: msc-consumer-depart
+    name: msc-consumer-staff
   cloud:
     nacos:
       discovery:
