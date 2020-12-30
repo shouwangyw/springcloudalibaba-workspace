@@ -1,0 +1,20 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: msc-cluster-token  # 该名称必须与client微服务名称相同
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.0.100:8848
+    sentinel:
+      transport:
+        dashboard: 192.168.254.130:8888
+      eager: true
+      datasource:
+        my-flow-rule:
+          nacos:
+            server-addr: 192.168.0.100:8848
+            data-id: consumer_rule
+            rule-type: flow
+            data-type: json

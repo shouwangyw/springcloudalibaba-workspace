@@ -5,10 +5,11 @@ spring:
     nacos:
       discovery:
         server-addr: 192.168.0.100:8848
-#        group: SENTINEL_GROUP
+        group: SENTINEL_GROUP
     sentinel:
       transport:
-        dashboard: 192.168.254.130:8888
+#        dashboard: 192.168.254.130:8888
+        dashboard: 192.168.0.100:8888
         port: 8719
       eager: true
       # 指定nacos数据源
@@ -18,8 +19,9 @@ spring:
           nacos:
             server-addr: 192.168.0.100:8848
             # 指定配置文件名称，可以随意
+#            dataId: my_consumer_rule
             dataId: ${spring.application.name}-flow-rules
-#            groupId: SENTINEL_GROUP
+            groupId: SENTINEL_GROUP
             # 指定配置文件中的规则类型
             rule-type: flow
             # 指定配置文件中的数据格式

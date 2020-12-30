@@ -1,0 +1,20 @@
+server:
+  port: 7070 # 修改端口号启动多个Client
+spring:
+  application:
+    name: msc-cluster-token
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.0.100:8848
+    sentinel:
+      transport:
+        dashboard: 192.168.254.130:8888
+      eager: true
+      datasource:
+        my-flow-rule:
+          nacos:
+            server-addr: 192.168.0.100:8848
+            dataId: consumer_rule
+            rule-type: flow
+            data-type: json
