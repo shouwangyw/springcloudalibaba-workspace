@@ -33,6 +33,9 @@
     <module>04-provider-nacos-8081</module>
     <module>05-gateway-parent</module>
     <module>06-sentinel-parent</module>
+    <module>07-seata-parent</module>
+    <module>08-provider-skywalking-8081</module>
+    <module>08-consumer-skywalking-8080</module>
   </modules>
 
   <dependencyManagement>
