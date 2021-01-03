@@ -10,9 +10,9 @@
   </parent>
 
   <groupId>com.yw.sca.example</groupId>
-  <artifactId>sca-example-parent</artifactId>
+  <artifactId>09-stream-rocketmq-producer-8081</artifactId>
   <version>1.0</version>
-  <packaging>pom</packaging>
+  <packaging>jar</packaging>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,25 +22,6 @@
     <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
     <spring-cloud-alibaba.version>2.2.3.RELEASE</spring-cloud-alibaba.version>
   </properties>
-
-  <modules>
-    <module>01-provider-8081</module>
-    <module>01-consumer-8080</module>
-    <module>02-provider-nacos-8081</module>
-    <module>02-consumer-nacos-8080</module>
-    <module>03-provider-nacos-config-8081</module>
-    <module>04-consumer-feign-8080</module>
-    <module>04-provider-nacos-8081</module>
-    <module>05-gateway-parent</module>
-    <module>06-sentinel-parent</module>
-    <module>07-seata-parent</module>
-    <module>08-provider-skywalking-8081</module>
-    <module>08-consumer-skywalking-8080</module>
-    <module>09-stream-rocketmq-producer-8081</module>
-    <module>09-stream-rocketmq-consumer-8080</module>
-    <module>10-provider-dubbo-8081</module>
-    <module>10-consumer-dubbo-8080</module>
-  </modules>
 
   <dependencyManagement>
     <dependencies>
@@ -76,20 +57,10 @@
   </dependencyManagement>
 
   <dependencies>
-    <!-- sentinel 依赖 -->
+    <!-- stream-rocketmq 依赖 -->
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
-      <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-    </dependency>
-    <!-- spring cloud loadbalancer依赖 -->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-loadbalancer</artifactId>
-    </dependency>
-    <!-- openfeign 依赖 -->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-openfeign</artifactId>
+      <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
     </dependency>
     <!-- nacos config依赖 -->
     <dependency>
@@ -106,20 +77,10 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
-    <!-- jpa依赖 -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
     <!-- web依赖 -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <!-- druid连接池依赖 -->
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>druid</artifactId>
     </dependency>
     <!-- lombok -->
     <dependency>

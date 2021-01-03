@@ -1,0 +1,45 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: msc-provider-depart
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.0.100:8848
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.254.128:3306/test?useUnicode=true&amp;characterEncoding=utf8
+    username: root
+    password: 123456
+
+dubbo:
+  scan:
+    # 指定Dubbo服务扫描的基本包
+    base-packages: com.yw.sca
+  # 指定注册中心挂载到当前应用指定的Spring Cloud的注册中心
+  registry:
+    address: spring-cloud://192.168.0.100
+  # 指定服务暴露协议
+  protocol:
+    name: dubbo
+    # 自增端口号，表示从20880开始自增
+    port: -1
+
+logging:
+  pattern:
+    console: level-%level %msg%n
+  level:
+    root: info
+    org.hibernate: info
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.hibernate.type.descriptor.sql.BasicExtractor: trace
+    com.yw: debug
+
+

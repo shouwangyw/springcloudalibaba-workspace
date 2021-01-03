@@ -1,0 +1,36 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: msc-stream-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.0.100:8848
+    stream:
+      rocketmq:
+        binder:
+          # 指定rocketMQ的name server地址
+          name-server: 192.168.254.130:9876
+          # 指定是否自动创建主题
+          auto-create-topics: true
+      bindings:
+        # 指定要绑定的管道的名称
+        input:
+          # 指定名称为 input 的管道将被顺序消费
+          consumer:
+            orderly: true
+          # 指定要生产的消息的主题及类型
+          destination: persons
+          content-type: text/plain
+          group: persons-group
+
+logging:
+  pattern:
+    console: level-%level %msg%n
+  level:
+    root: info
+    org.hibernate: info
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.hibernate.type.descriptor.sql.BasicExtractor: trace
+    com.yw: debug

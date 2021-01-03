@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: msc-consumer-depart
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.0.100:8848
+dubbo:
+  registry:
+    address: spring-cloud://192.168.0.100
+  # 指定要订阅的服务
+  cloud:
+    subscribed-services: msc-provider-depart
+  protocol:
+    name: dubbo
+    port: -1
